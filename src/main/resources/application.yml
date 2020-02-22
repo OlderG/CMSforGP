@@ -1,0 +1,50 @@
+#端口号
+server:
+  port: 8887
+
+#spring配置
+spring:
+  #数据源配置
+  datasource:
+    name: cms
+    url: jdbc:mysql://localhost:3306/cms?useUnicode=true&characterEncoding=utf8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: root
+
+#mybatis-plus配置
+mybatis-plus:
+  # 项目Mapper.xml存放位置
+  mapper-locations: classpath:/mapper/*.xml
+  # 项目Mapper接口存放位置
+  type-aliases-package: com.gp.njucm.cmsfussatiaep.model.po
+  #本部分（Configuration）的配置大都为 MyBatis 原生支持的配置，这意味着您可以通过 MyBatis XML 配置文件的形式进行配置。
+  configuration:
+    #是否开启自动驼峰命名规则（camel case）映射，即从经典数据库列名 A_COLUMN（下划线命名） 到经典 Java 属性名 aColumn（驼峰命名） 的类似映射。
+    map-underscore-to-camel-case: true
+    #MyBatis 自动映射策略，通过该配置可指定 MyBatis 是否并且如何来自动映射数据表字段与对象的属性，总共有 3 种可选值：
+    #NONE：不启用自动映射  PARTIAL：只对非嵌套的 resultMap 进行自动映射  FULL：对所有的 resultMap 都进行自动映射
+    auto-mapping-behavior: full
+    #MyBatis 自动映射时未知列或未知属性处理策略，通过该配置可指定 MyBatis 在自动映射过程中遇到未知列或者未知属性时如何处理，总共有 3 种可选值：
+    #NONE：不做任何处理 (默认值)  WARNING：以日志的形式打印相关警告信息  FAILING：当作映射失败处理，并抛出异常和详细信息
+    auto-mapping-unknown-column-behavior: warning
+  #全局配置
+  global-config:
+    #是否控制台 print mybatis-plus 的 LOGO
+    banner: true
+    #是否初始化 SqlRunner(com.baomidou.mybatisplus.extension.toolkit.SqlRunner)
+    enable-sql-runner: true
+    #MyBatis-Plus 全局策略中的 DB 策略配置
+    db-config:
+      #逻辑删除的对应值为1
+      #逻辑存在的对应值为0
+      #使用方法 1.实体类字段上加上@TableLogic注解
+      #2.使用mp自带方法删除和查找都会附带逻辑删除功能 (自己写的xml不会)
+      #例子： 删除时 update tablename set deleted=1 where id =1 and deleted=0
+      #      查找时 select * from tablename where deleted=0
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+
+
+
+
